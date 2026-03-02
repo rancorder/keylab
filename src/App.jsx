@@ -56,7 +56,7 @@ function useSwipe(onLeft, onRight) {
 /* ─── Design tokens ─── */
 const C  = "'Share Tech Mono',monospace";
 const F  = "'Inter','Noto Sans JP',sans-serif";
-const BG = "#070c18";
+const BG = "#080f1e";
 const BL = "#0ea5e9";
 const CY = "#06b6d4";
 const AM = "#f59e0b";
@@ -231,7 +231,7 @@ function BgCanvas() {
     window.addEventListener("resize",onResize);
     return ()=>{cancelAnimationFrame(raf);window.removeEventListener("resize",onResize);};
   },[]);
-  return <canvas ref={ref} style={{position:"fixed",inset:0,zIndex:0,pointerEvents:"none",opacity:.6}}/>;
+  return <canvas ref={ref} style={{position:"fixed",inset:0,zIndex:0,pointerEvents:"none",opacity:.35}}/>;
 }
 
 /* ─── Section label ─── */
@@ -262,10 +262,11 @@ function ProgressDots({cur,total}){
 /* ─── Shell ─── */
 function Shell({children}){
   return (
-    <div style={{height:"100%",overflowY:"auto",overflowX:"hidden",WebkitOverflowScrolling:"touch",boxSizing:"border-box"}}>
-      <div style={{minHeight:"100%",padding:"clamp(1.2rem,4vw,2rem) clamp(1.2rem,5vw,4vw)",
+    <div style={{height:"100%",width:"100%",overflowY:"auto",overflowX:"hidden",WebkitOverflowScrolling:"touch",boxSizing:"border-box",
+      display:"flex",flexDirection:"column",alignItems:"center"}}>
+      <div style={{minHeight:"100%",width:"100%",padding:"clamp(1.2rem,4vw,2rem) clamp(1.5rem,6vw,5vw)",
         display:"flex",flexDirection:"column",justifyContent:"center",boxSizing:"border-box",
-        maxWidth:"900px",margin:"0 auto",width:"100%"}}>
+        maxWidth:"820px",margin:"0 auto"}}>
         {children}
       </div>
     </div>
@@ -434,7 +435,7 @@ function S0_Boot(){
             時代へ。
           </div>
         </div>
-        <div style={{opacity:ph>=3?1:0,transition:"opacity .8s",maxWidth:420,fontFamily:F,fontSize:"clamp(.85rem,3vw,1rem)",color:"#64748b",lineHeight:1.8}}>
+        <div style={{opacity:ph>=3?1:0,transition:"opacity .8s",maxWidth:420,fontFamily:F,fontSize:"clamp(.85rem,3vw,1rem)",color:"#8fa3b8",lineHeight:1.8}}>
           今日は、<span style={{color:AM,fontWeight:700}}>3つの確認</span>から始めます。
         </div>
         {ph>=3&&(
@@ -468,7 +469,7 @@ function S1_Purpose(){
           <HoverCard key={i} color={it.color} style={{
             position:"relative",overflow:"hidden",
             padding:"clamp(.8rem,3vw,1.1rem) clamp(.9rem,3.5vw,1.3rem)",
-            border:`1px solid ${it.color}30`,background:`${it.color}08`,
+            border:`1px solid ${it.color}30`,background:`${it.color}14`,
             borderRadius:4,borderLeft:`3px solid ${it.color}`,
             display:"flex",alignItems:"center",gap:"1rem",
             opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(-20px)",
@@ -478,7 +479,7 @@ function S1_Purpose(){
             <div style={{fontSize:"1.3rem"}}>{it.icon}</div>
             <div>
               <div style={{fontFamily:F,fontWeight:700,color:"#e2e8f0",fontSize:"clamp(.9rem,3.2vw,1rem)"}}>{it.title}</div>
-              <div style={{fontFamily:F,color:"#64748b",fontSize:"clamp(.72rem,2.5vw,.82rem)",marginTop:2}}>{it.sub}</div>
+              <div style={{fontFamily:F,color:"#8fa3b8",fontSize:"clamp(.72rem,2.5vw,.82rem)",marginTop:2}}>{it.sub}</div>
             </div>
           </HoverCard>
         ))}
@@ -511,24 +512,24 @@ function S2_Change(){
             "安定運用・品質保証のため",
           ]},
         ].map((col,ci)=>(
-          <div key={ci} style={{padding:"clamp(.8rem,3vw,1rem)",border:`1px solid ${col.color}30`,background:`${col.color}08`,borderRadius:4,borderTop:`2px solid ${col.color}`}}>
+          <div key={ci} style={{padding:"clamp(.8rem,3vw,1rem)",border:`1px solid ${col.color}30`,background:`${col.color}15`,borderRadius:4,borderTop:`2px solid ${col.color}`}}>
             <div style={{fontFamily:C,color:`${col.color}80`,fontSize:"clamp(.58rem,1.8vw,.65rem)",letterSpacing:".12em",marginBottom:8}}>{col.title}</div>
             {col.items.map((it,i)=>(
               <HoverBullet key={i} color={col.color} style={{position:"relative",display:"flex",gap:6,marginBottom:5,alignItems:"flex-start",paddingLeft:4}}>
                 <span style={{color:`${col.color}80`,marginTop:2,flexShrink:0,transition:"color .15s"}}>•</span>
-                <span style={{fontFamily:F,fontSize:"clamp(.7rem,2.5vw,.8rem)",color:"#94a3b8",lineHeight:1.5,transition:"color .15s"}}>{it}</span>
+                <span style={{fontFamily:F,fontSize:"clamp(.7rem,2.5vw,.8rem)",color:"#b4c5d4",lineHeight:1.5,transition:"color .15s"}}>{it}</span>
               </HoverBullet>
             ))}
           </div>
         ))}
       </div>
 
-      <HoverCard color={AM} style={{position:"relative",overflow:"hidden",padding:"clamp(.8rem,3vw,1rem)",border:`1px solid ${AM}40`,background:`${AM}08`,borderRadius:4,opacity:vis?1:0,transition:"opacity .6s .3s"}}>
+      <HoverCard color={AM} style={{position:"relative",overflow:"hidden",padding:"clamp(.8rem,3vw,1rem)",border:`1px solid ${AM}40`,background:`${AM}16`,borderRadius:4,opacity:vis?1:0,transition:"opacity .6s .3s"}}>
         <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
           <div style={{fontSize:"1.2rem",flexShrink:0}}>📋</div>
           <div>
             <div style={{fontFamily:F,fontWeight:700,color:AM,fontSize:"clamp(.85rem,3vw,.95rem)",marginBottom:4}}>サブスク契約への移行が必須</div>
-            <div style={{fontFamily:F,color:"#94a3b8",fontSize:"clamp(.72rem,2.5vw,.82rem)",lineHeight:1.6}}>
+            <div style={{fontFamily:F,color:"#b4c5d4",fontSize:"clamp(.72rem,2.5vw,.82rem)",lineHeight:1.6}}>
               安定的なサービス継続利用には、サブスクリプション契約への切り替えが必要です。移行後はサポート・保守の対象となり、安定運用を保証します。
             </div>
           </div>
@@ -556,7 +557,7 @@ function S3_Market(){
         ].map((col,ci)=>(
           <HoverCard key={ci} color={col.color} style={{
             position:"relative",overflow:"hidden",
-            padding:"clamp(.8rem,3vw,1rem)",border:`1px solid ${col.color}25`,background:`${col.color}07`,borderRadius:4,
+            padding:"clamp(.8rem,3vw,1rem)",border:`1px solid ${col.color}25`,background:`${col.color}12`,borderRadius:4,
             opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(16px)",
             transition:`opacity .5s ${ci*0.15}s, transform .5s ${ci*0.15}s`,
           }}>
@@ -566,16 +567,16 @@ function S3_Market(){
             {col.items.map((it,i)=>(
               <HoverBullet key={i} color={col.color} style={{position:"relative",display:"flex",gap:5,marginBottom:4,alignItems:"center"}}>
                 <span style={{color:`${col.color}70`,fontSize:".7rem",transition:"color .15s"}}>→</span>
-                <span style={{fontFamily:F,fontSize:"clamp(.68rem,2.3vw,.78rem)",color:"#94a3b8",transition:"color .15s"}}>{it}</span>
+                <span style={{fontFamily:F,fontSize:"clamp(.68rem,2.3vw,.78rem)",color:"#b4c5d4",transition:"color .15s"}}>{it}</span>
               </HoverBullet>
             ))}
           </HoverCard>
         ))}
       </div>
 
-      <HoverCard color={GN} style={{position:"relative",overflow:"hidden",padding:"clamp(.7rem,2.5vw,.9rem)",border:`1px solid ${GN}30`,background:`${GN}08`,borderRadius:4,opacity:vis?1:0,transition:"opacity .6s .4s"}}>
+      <HoverCard color={GN} style={{position:"relative",overflow:"hidden",padding:"clamp(.7rem,2.5vw,.9rem)",border:`1px solid ${GN}30`,background:`${GN}14`,borderRadius:4,opacity:vis?1:0,transition:"opacity .6s .4s"}}>
         <div style={{fontFamily:F,fontWeight:700,color:GN,fontSize:"clamp(.8rem,2.8vw,.88rem)",marginBottom:3}}>🎯 目指すゴール</div>
-        <div style={{fontFamily:F,color:"#94a3b8",fontSize:"clamp(.7rem,2.3vw,.8rem)",lineHeight:1.6}}>
+        <div style={{fontFamily:F,color:"#b4c5d4",fontSize:"clamp(.7rem,2.3vw,.8rem)",lineHeight:1.6}}>
           「選ばれ続ける会員基盤」の構築 ― 会員離脱防止 × 運用負担削減 × 単一プラットフォームへの機能統合
         </div>
       </HoverCard>
@@ -591,7 +592,7 @@ function S4_Platform(){
       <h2 style={{fontFamily:F,fontSize:"clamp(1.2rem,4vw,1.8rem)",fontWeight:800,color:"#f1f5f9",lineHeight:1.3,margin:"0 0 .6rem"}}>
         取引データを<span style={{color:AM}}>自動でCRMに変換</span>する<br/>プラットフォーム
       </h2>
-      <p style={{fontFamily:F,color:"#64748b",fontSize:"clamp(.72rem,2.5vw,.82rem)",lineHeight:1.7,margin:"0 0 .8rem"}}>
+      <p style={{fontFamily:F,color:"#8fa3b8",fontSize:"clamp(.72rem,2.5vw,.82rem)",lineHeight:1.7,margin:"0 0 .8rem"}}>
         POS・EC・決済から取引データを自動取得し、LINE/LIFF会員証に顧客を統合。セグメント・ランク・自動配信などのCRM施策を現場オペレーションを増やさず実行できます。
       </p>
       <CRMNetwork3D/>
@@ -628,7 +629,7 @@ function S5_Benefits(){
           <HoverCard key={i} color={it.color} style={{
             position:"relative",overflow:"hidden",
             display:"flex",gap:10,padding:"clamp(.7rem,2.5vw,1rem)",
-            border:`1px solid ${it.color}25`,background:`${it.color}07`,
+            border:`1px solid ${it.color}25`,background:`${it.color}12`,
             borderRadius:4,borderLeft:`3px solid ${it.color}`,
             opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(-16px)",
             transition:`opacity .4s ${i*.08}s, transform .4s ${i*.08}s`,
@@ -642,7 +643,7 @@ function S5_Benefits(){
               <div style={{fontFamily:F,fontWeight:700,color:"#e2e8f0",fontSize:"clamp(.82rem,3vw,.92rem)",marginBottom:5}}>{it.title}</div>
               <div style={{display:"flex",flexWrap:"wrap",gap:"3px 10px"}}>
                 {it.points.map(p=>(
-                  <HoverTag key={p} color={it.color} style={{fontFamily:F,fontSize:"clamp(.65rem,2.2vw,.74rem)",color:"#64748b",border:"none",padding:"1px 0",borderRadius:0,gap:3}}>
+                  <HoverTag key={p} color={it.color} style={{fontFamily:F,fontSize:"clamp(.65rem,2.2vw,.74rem)",color:"#8fa3b8",border:"none",padding:"1px 0",borderRadius:0,gap:3}}>
                     <span style={{color:`${it.color}60`,fontSize:".7rem"}}>✓</span>{p}
                   </HoverTag>
                 ))}
@@ -686,7 +687,7 @@ function S6_HowItWorks(){
             }}>
               <div style={{fontFamily:C,color:`${BL}60`,fontSize:"clamp(.5rem,1.7vw,.6rem)",marginBottom:3}}>{st.who}</div>
               <div style={{fontSize:"1.2rem",marginBottom:2}}>{st.icon}</div>
-              <div style={{fontFamily:F,fontSize:"clamp(.62rem,2vw,.72rem)",color:"#94a3b8",lineHeight:1.4}}>{st.action}</div>
+              <div style={{fontFamily:F,fontSize:"clamp(.62rem,2vw,.72rem)",color:"#b4c5d4",lineHeight:1.4}}>{st.action}</div>
             </HoverStep>
             {i<steps.length-1&&<div style={{color:`${BL}50`,fontSize:"1rem",flexShrink:0}}>→</div>}
           </div>
@@ -699,14 +700,14 @@ function S6_HowItWorks(){
           <HoverCard key={i} color={BL} style={{
             position:"relative",overflow:"hidden",
             display:"flex",gap:10,padding:"clamp(.6rem,2vw,.85rem)",
-            border:`1px solid rgba(14,165,233,.15)`,background:"rgba(14,165,233,.04)",borderRadius:4,
+            border:`1px solid rgba(14,165,233,.15)`,background:"rgba(8,15,30,.75)",borderRadius:4,
             opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(12px)",
             transition:`opacity .4s ${i*.1}s, transform .4s ${i*.1}s`,
           }}>
             <div style={{fontSize:"1.3rem",flexShrink:0}}>{f.icon}</div>
             <div>
               <div style={{fontFamily:F,fontWeight:700,color:"#e2e8f0",fontSize:"clamp(.8rem,2.8vw,.9rem)",marginBottom:2}}>{f.t}</div>
-              <div style={{fontFamily:F,color:"#64748b",fontSize:"clamp(.68rem,2.3vw,.78rem)",lineHeight:1.5}}>{f.d}</div>
+              <div style={{fontFamily:F,color:"#8fa3b8",fontSize:"clamp(.68rem,2.3vw,.78rem)",lineHeight:1.5}}>{f.d}</div>
             </div>
           </HoverCard>
         ))}
@@ -726,7 +727,7 @@ function S7_Pricing(){
         サブスク移行時の<br/><span style={{color:AM}}>費用概要</span>
       </h2>
 
-      <HoverCard color={RD} style={{position:"relative",overflow:"hidden",padding:"clamp(.6rem,2vw,.8rem)",border:`1px solid ${RD}40`,background:`${RD}08`,borderRadius:4,marginBottom:12,display:"flex",gap:8,alignItems:"center",opacity:vis?1:0,transition:"opacity .5s"}}>
+      <HoverCard color={RD} style={{position:"relative",overflow:"hidden",padding:"clamp(.6rem,2vw,.8rem)",border:`1px solid ${RD}40`,background:`${RD}14`,borderRadius:4,marginBottom:12,display:"flex",gap:8,alignItems:"center",opacity:vis?1:0,transition:"opacity .5s"}}>
         <span style={{fontSize:"1.1rem"}}>🔴</span>
         <div style={{fontFamily:F,fontSize:"clamp(.72rem,2.5vw,.82rem)",color:`${RD}90`}}>
           <strong>重要：</strong>無料プラン終了 → サブスク契約への移行が必須
@@ -756,18 +757,18 @@ function S7_Pricing(){
             <div style={{fontFamily:F,fontWeight:800,color:p.highlight?AM:"#e2e8f0",fontSize:"clamp(1.4rem,4.5vw,1.8rem)",lineHeight:1}}>
               {p.price}<span style={{fontSize:"clamp(.65rem,2vw,.75rem)",fontWeight:400}}>{p.unit}</span>
             </div>
-            <div style={{fontFamily:F,color:"#475569",fontSize:"clamp(.6rem,2vw,.68rem)",marginBottom:8}}>{p.sub}</div>
+            <div style={{fontFamily:F,color:"#6b7f94",fontSize:"clamp(.6rem,2vw,.68rem)",marginBottom:8}}>{p.sub}</div>
             {p.features.map(f=>(
               <HoverBullet key={f} color={p.color} style={{position:"relative",display:"flex",gap:4,marginBottom:3,alignItems:"flex-start",paddingLeft:4}}>
                 <span style={{color:`${p.highlight?AM:BL}60`,fontSize:".65rem",marginTop:2,transition:"color .15s"}}>✓</span>
-                <span style={{fontFamily:F,fontSize:"clamp(.62rem,2vw,.72rem)",color:"#64748b",lineHeight:1.4,transition:"color .15s"}}>{f}</span>
+                <span style={{fontFamily:F,fontSize:"clamp(.62rem,2vw,.72rem)",color:"#8fa3b8",lineHeight:1.4,transition:"color .15s"}}>{f}</span>
               </HoverBullet>
             ))}
           </HoverCard>
         ))}
       </div>
 
-      <HoverCard color={GN} style={{position:"relative",overflow:"hidden",padding:"clamp(.7rem,2.5vw,.9rem)",border:`1px solid ${GN}30`,background:`${GN}08`,borderRadius:4,opacity:vis?1:0,transition:"opacity .5s .4s"}}>
+      <HoverCard color={GN} style={{position:"relative",overflow:"hidden",padding:"clamp(.7rem,2.5vw,.9rem)",border:`1px solid ${GN}30`,background:`${GN}14`,borderRadius:4,opacity:vis?1:0,transition:"opacity .5s .4s"}}>
         <div style={{fontFamily:F,fontSize:"clamp(.7rem,2.5vw,.8rem)",color:`${GN}90`,lineHeight:1.7}}>
           💡 スモールスタートが可能。会員規模に応じた詳細なプランをご用意しています。
         </div>
@@ -801,12 +802,12 @@ function S8_Cases(){
         {voices.map((v,i)=>(
           <HoverCard key={i} color={v.color} style={{
             position:"relative",overflow:"hidden",
-            padding:"clamp(.8rem,3vw,1.1rem)",border:`1px solid ${v.color}25`,background:`${v.color}07`,borderRadius:4,
+            padding:"clamp(.8rem,3vw,1.1rem)",border:`1px solid ${v.color}25`,background:`${v.color}12`,borderRadius:4,
             opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(-16px)",
             transition:`opacity .5s ${i*.12}s, transform .5s ${i*.12}s`,
           }}>
             <div style={{display:"flex",gap:6,alignItems:"center",marginBottom:6}}>
-              <div style={{fontFamily:F,fontSize:"clamp(.68rem,2.3vw,.76rem)",color:"#64748b"}}>{v.type}</div>
+              <div style={{fontFamily:F,fontSize:"clamp(.68rem,2.3vw,.76rem)",color:"#8fa3b8"}}>{v.type}</div>
               <span style={{fontFamily:C,fontSize:"clamp(.5rem,1.6vw,.58rem)",padding:"2px 6px",background:`${v.color}20`,color:v.color,borderRadius:2}}>{v.badge}</span>
             </div>
             <div style={{fontFamily:C,color:v.color,fontSize:"1.2rem",marginBottom:4}}>"</div>
@@ -815,7 +816,7 @@ function S8_Cases(){
         ))}
       </div>
 
-      <div style={{padding:"clamp(.8rem,3vw,1rem)",border:`1px solid rgba(14,165,233,.15)`,background:"rgba(14,165,233,.04)",borderRadius:4,marginBottom:10,opacity:vis?1:0,transition:"opacity .5s .3s"}}>
+      <div style={{padding:"clamp(.8rem,3vw,1rem)",border:`1px solid rgba(14,165,233,.15)`,background:"rgba(8,15,30,.75)",borderRadius:4,marginBottom:10,opacity:vis?1:0,transition:"opacity .5s .3s"}}>
         <div style={{fontFamily:C,fontSize:"clamp(.55rem,1.8vw,.62rem)",color:`${BL}60`,letterSpacing:".12em",marginBottom:8}}>移行実績のある業界例</div>
         <div style={{display:"flex",gap:8}}>
           {industries.map(ind=>(
@@ -826,13 +827,13 @@ function S8_Cases(){
             }}>
               <div style={{fontSize:"1.3rem",marginBottom:3}}>{ind.icon}</div>
               <div style={{fontFamily:F,fontWeight:700,color:"#e2e8f0",fontSize:"clamp(.68rem,2.3vw,.76rem)",marginBottom:2}}>{ind.label}</div>
-              <div style={{fontFamily:F,color:"#64748b",fontSize:"clamp(.6rem,2vw,.68rem)"}}>{ind.sub}</div>
+              <div style={{fontFamily:F,color:"#8fa3b8",fontSize:"clamp(.6rem,2vw,.68rem)"}}>{ind.sub}</div>
             </HoverCard>
           ))}
         </div>
       </div>
 
-      <div style={{padding:"clamp(.6rem,2vw,.8rem)",border:`1px solid ${GN}25`,background:`${GN}06`,borderRadius:4,opacity:vis?1:0,transition:"opacity .5s .5s"}}>
+      <div style={{padding:"clamp(.6rem,2vw,.8rem)",border:`1px solid ${GN}25`,background:`${GN}12`,borderRadius:4,opacity:vis?1:0,transition:"opacity .5s .5s"}}>
         <div style={{fontFamily:C,fontSize:"clamp(.52rem,1.7vw,.6rem)",color:`${GN}70`,letterSpacing:".1em",marginBottom:6}}>主な導入企業</div>
         <div style={{display:"flex",flexWrap:"wrap",gap:"4px 10px"}}>
           {enterprises.map(e=>(
@@ -893,7 +894,7 @@ function S9_QA(){
                 transform:open===i?"rotate(45deg)":"rotate(0)",transition:"transform .2s"}}>+</span>
             </button>
             {open===i&&(
-              <div style={{padding:"0 clamp(.7rem,2.5vw,.9rem) clamp(.7rem,2.5vw,.9rem)",fontFamily:F,color:"#94a3b8",fontSize:"clamp(.72rem,2.5vw,.82rem)",lineHeight:1.7,borderTop:`1px solid rgba(14,165,233,.15)`}}>
+              <div style={{padding:"0 clamp(.7rem,2.5vw,.9rem) clamp(.7rem,2.5vw,.9rem)",fontFamily:F,color:"#b4c5d4",fontSize:"clamp(.72rem,2.5vw,.82rem)",lineHeight:1.7,borderTop:`1px solid rgba(14,165,233,.15)`}}>
                 A. {qa.a}
               </div>
             )}
@@ -927,7 +928,7 @@ function S10_End(){
           </div>
         </div>
         <div style={{opacity:ph>=3?1:0,transition:"opacity .8s",maxWidth:420}}>
-          <div style={{fontFamily:F,color:"#64748b",fontSize:"clamp(.8rem,2.8vw,.95rem)",lineHeight:1.8,marginBottom:"1.2rem"}}>
+          <div style={{fontFamily:F,color:"#8fa3b8",fontSize:"clamp(.8rem,2.8vw,.95rem)",lineHeight:1.8,marginBottom:"1.2rem"}}>
             「取引データで売上を自動で回す」― その仕組みを、<br/>
             <span style={{color:AM,fontWeight:700}}>一緒に構築</span>しませんか。
           </div>
@@ -1011,6 +1012,9 @@ export default function App(){
 
       <BgCanvas/>
 
+      {/* Center radial glow for readability */}
+      <div style={{position:"fixed",inset:0,zIndex:1,pointerEvents:"none",
+        background:"radial-gradient(ellipse 70% 60% at 50% 50%, rgba(8,15,30,.55) 0%, transparent 100%)"}}/>
       {/* Header */}
       <div style={{position:"fixed",top:0,left:0,right:0,zIndex:10,
         padding:"clamp(.5rem,2vw,.75rem) clamp(.8rem,3vw,1.2rem)",
@@ -1028,6 +1032,7 @@ export default function App(){
 
       {/* Slide */}
       <div {...swipe} style={{position:"fixed",inset:0,paddingTop:"clamp(2.5rem,8vw,3.2rem)",paddingBottom:"clamp(3.5rem,12vw,4.5rem)",
+        zIndex:5,
         opacity:anim?0:1,transform:anim?`translateX(${dir*18}px)`:"translateX(0)",
         transition:"opacity .22s,transform .22s"}}>
         <Slide key={cur}/>
