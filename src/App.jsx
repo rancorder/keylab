@@ -262,11 +262,23 @@ function ProgressDots({cur,total}){
 /* ─── Shell ─── */
 function Shell({children}){
   return (
-    <div style={{height:"100%",width:"100%",overflowY:"auto",overflowX:"hidden",WebkitOverflowScrolling:"touch",boxSizing:"border-box",
-      display:"flex",flexDirection:"column",alignItems:"center"}}>
-      <div style={{minHeight:"100%",width:"100%",padding:"clamp(1.2rem,4vw,2rem) clamp(1.5rem,6vw,5vw)",
-        display:"flex",flexDirection:"column",justifyContent:"center",boxSizing:"border-box",
-        maxWidth:"820px",margin:"0 auto"}}>
+    <div style={{
+      height:"100%",width:"100%",
+      overflowY:"auto",overflowX:"hidden",
+      WebkitOverflowScrolling:"touch",
+      boxSizing:"border-box",
+    }}>
+      <div style={{
+        minHeight:"100%",
+        width:"100%",
+        maxWidth:"780px",
+        margin:"0 auto",
+        padding:"clamp(1rem,3vw,1.8rem) clamp(1.5rem,4vw,3.5rem)",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        boxSizing:"border-box",
+      }}>
         {children}
       </div>
     </div>
@@ -1017,49 +1029,58 @@ export default function App(){
         background:"radial-gradient(ellipse 70% 60% at 50% 50%, rgba(8,15,30,.55) 0%, transparent 100%)"}}/>
       {/* Header */}
       <div style={{position:"fixed",top:0,left:0,right:0,zIndex:10,
-        padding:"clamp(.5rem,2vw,.75rem) clamp(.8rem,3vw,1.2rem)",
+        height:"44px",
+        padding:"0 clamp(.8rem,3vw,1.5rem)",
         display:"flex",justifyContent:"space-between",alignItems:"center",
-        borderBottom:"1px solid rgba(14,165,233,.08)",
-        background:"rgba(7,12,24,.85)",backdropFilter:"blur(8px)"}}>
+        borderBottom:"1px solid rgba(14,165,233,.1)",
+        background:"rgba(8,15,30,.92)",backdropFilter:"blur(10px)"}}>
         <div style={{display:"flex",alignItems:"center",gap:8}}>
           <div style={{width:8,height:8,borderRadius:"50%",background:BL,boxShadow:`0 0 8px ${BL}`}}/>
-          <span style={{fontFamily:C,fontSize:"clamp(.55rem,1.8vw,.65rem)",color:`rgba(14,165,233,.6)`,letterSpacing:".15em"}}>POINTQUIC</span>
+          <span style={{fontFamily:C,fontSize:"clamp(.55rem,1.8vw,.65rem)",color:`rgba(14,165,233,.7)`,letterSpacing:".15em"}}>POINTQUIC</span>
         </div>
-        <div style={{fontFamily:C,fontSize:"clamp(.52rem,1.7vw,.62rem)",color:"rgba(14,165,233,.4)"}}>
+        <div style={{fontFamily:C,fontSize:"clamp(.52rem,1.7vw,.62rem)",color:"rgba(14,165,233,.45)"}}>
           {String(cur+1).padStart(2,"0")}/{String(SLIDES.length).padStart(2,"0")} {SLIDES[cur].id}
         </div>
       </div>
 
       {/* Slide */}
-      <div {...swipe} style={{position:"fixed",inset:0,paddingTop:"clamp(2.5rem,8vw,3.2rem)",paddingBottom:"clamp(3.5rem,12vw,4.5rem)",
+      <div {...swipe} style={{
+        position:"fixed",
+        top:"44px",          /* header height */
+        left:0,right:0,
+        bottom:"52px",       /* footer height */
         zIndex:5,
-        opacity:anim?0:1,transform:anim?`translateX(${dir*18}px)`:"translateX(0)",
-        transition:"opacity .22s,transform .22s"}}>
+        overflowY:"auto",
+        opacity:anim?0:1,
+        transform:anim?`translateX(${dir*18}px)`:"translateX(0)",
+        transition:"opacity .22s,transform .22s",
+      }}>
         <Slide key={cur}/>
       </div>
 
       {/* Footer Nav */}
       <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:10,
-        padding:"clamp(.5rem,2vw,.75rem) clamp(.8rem,3vw,1.2rem)",
+        height:"52px",
+        padding:"0 clamp(.8rem,3vw,1.5rem)",
         display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,
-        borderTop:"1px solid rgba(14,165,233,.08)",
-        background:"rgba(7,12,24,.85)",backdropFilter:"blur(8px)"}}>
+        borderTop:"1px solid rgba(14,165,233,.1)",
+        background:"rgba(8,15,30,.92)",backdropFilter:"blur(10px)"}}>
         <button onClick={goPrev} disabled={cur===0||anim} style={{
-          fontFamily:C,fontSize:"clamp(.6rem,2vw,.72rem)",letterSpacing:".12em",
-          padding:"clamp(.35rem,1.5vw,.5rem) clamp(.6rem,2.5vw,.9rem)",
-          border:`1px solid rgba(14,165,233,${cur===0?.1:.35})`,
-          color:`rgba(14,165,233,${cur===0?.2:.7})`,background:"transparent",
-          borderRadius:2,cursor:cur===0?"default":"pointer",transition:"all .2s"}}>
+          fontFamily:C,fontSize:".68rem",letterSpacing:".12em",
+          padding:"6px 14px",
+          border:`1px solid rgba(14,165,233,${cur===0?.1:.4})`,
+          color:`rgba(14,165,233,${cur===0?.2:.75})`,background:"transparent",
+          borderRadius:2,cursor:cur===0?"default":"pointer",transition:"all .2s",whiteSpace:"nowrap"}}>
           ← PREV
         </button>
         <ProgressDots cur={cur+1} total={SLIDES.length}/>
         <button onClick={goNext} disabled={cur===SLIDES.length-1||anim} style={{
-          fontFamily:C,fontSize:"clamp(.6rem,2vw,.72rem)",letterSpacing:".12em",
-          padding:"clamp(.35rem,1.5vw,.5rem) clamp(.6rem,2.5vw,.9rem)",
-          border:`1px solid rgba(14,165,233,${cur===SLIDES.length-1?.1:.55})`,
+          fontFamily:C,fontSize:".68rem",letterSpacing:".12em",
+          padding:"6px 14px",
+          border:`1px solid rgba(14,165,233,${cur===SLIDES.length-1?.1:.6})`,
           color:cur===SLIDES.length-1?"rgba(14,165,233,.2)":BL,
-          background:cur===SLIDES.length-1?"transparent":"rgba(14,165,233,.08)",
-          borderRadius:2,cursor:cur===SLIDES.length-1?"default":"pointer",transition:"all .2s"}}>
+          background:cur===SLIDES.length-1?"transparent":"rgba(14,165,233,.1)",
+          borderRadius:2,cursor:cur===SLIDES.length-1?"default":"pointer",transition:"all .2s",whiteSpace:"nowrap"}}>
           NEXT →
         </button>
       </div>
